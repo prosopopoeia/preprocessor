@@ -1,0 +1,27 @@
+this is /*a line of text */
+this is plain text
+so is this
+/* multi
+line
+block 
+comment
+should be removed
+*/
+some text 
+/*
+
+
+
+
+
+
+nothing here */
+this has some /* text */
+this has some /*
+
+
+text
+
+*/
+/*//*/
+

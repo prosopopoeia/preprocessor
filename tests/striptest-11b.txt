@@ -1,0 +1,15 @@
+this is some text//followed by comments//
+//this is a single line comment
+can/should this be done?// it should be possible 
+// 
+multiple lines here
+//
+//some
+  //comments
+	//with differing indentation.
+this is the final 				//comment
+//
+this is a line without 
+dljaldsfj
+dlkfja;lkjdfl;akj;lk	l;kj;lkdkkdlkjadlskj			
+ddkdkjkfjkjkja;dlkjf

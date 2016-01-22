@@ -1,0 +1,31 @@
+//start with comment
+and more
+
+this       /* is more comments*/
+	
+     
+this should remain in file after processing
+
+//this should not//  
+/*space after block comment*/    
+/*tab after block comment  */	
+/* space and tab after this*/    	   	 
+multiline comment follows:
+/*multi
+line 
+comment*/
+
+this is/* a comment 
+*/
+filepath: c/spot/place/file
+filepath2: c\windows\file
+
+				
+	/*tab before comment*/
+
+line //comments should be removed
+
+// /*line plus block*/
+ 	hvm /*remove
+comment*/
+	a//comment with a tab before the a

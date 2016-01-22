@@ -1,0 +1,17 @@
+this is some text
+
+this is for testing purposes and will be used for testing purposes because
+			
+	this is for testing a tab before text
+
+		
+   	 	 	 
+    There are blank spaces before and after this text  
+
+fractions are typically symbolized: 3/4 so is division. Windows uses \ in file paths so c\somedirectory\somefile.something
+  
+ 
+		
+
+
+last line of text.
