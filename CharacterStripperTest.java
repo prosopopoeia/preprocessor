@@ -63,7 +63,6 @@ public class CharacterStripperTest
     
     @Test
     public void testRemoveBlankLinesWithSpacesAndTabsAtEnd() {
-        
         assertEquals(" this line should be unaltered       ", charStripper.removeBlankLines(" this line should be unaltered       "));
     }
 

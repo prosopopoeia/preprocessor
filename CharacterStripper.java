@@ -49,7 +49,6 @@ public class CharacterStripper
                break;
            }
         }
-        
         return lineOfText;
     }
     
