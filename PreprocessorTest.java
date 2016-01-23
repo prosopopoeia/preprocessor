@@ -42,4 +42,18 @@ public class PreprocessorTest
     public void tearDown()
     {
     }
+
+    @Test
+    public void testRetrieveFile()
+    {
+        assertEquals("this shouldbe readable", preprocessor.getFile("tests/junitTester.txt"));
+    }
+
+    @Test
+    public void testOutputtingToFile()
+    {
+        preprocessor.storeFile("tests/testOut.txt", "this text is \n to be here/n \nand");
+    }
 }
+
+

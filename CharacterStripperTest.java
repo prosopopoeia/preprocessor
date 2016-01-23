@@ -77,7 +77,7 @@ public class CharacterStripperTest
     @Test
     public void testRemoveLineCommentsWithCharactersInFront()
     {
-        assertEquals("don't remove this text", charStripper.removeBlankLines("don't remove this text//but remove this"));
+        assertEquals("don't remove this text", charStripper.removeLineComments("don't remove this text//but remove this"));
         assertEquals("dont remove ", charStripper.removeLineComments("dont remove // but do remove this"));
     }
 

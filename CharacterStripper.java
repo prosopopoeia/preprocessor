@@ -40,20 +40,35 @@ public class CharacterStripper
     
     public String removeLineComments(String currentLine) {
         char currentCharacter;
-        String lineOfText = null;
+        String lineOfText = currentLine;
+        boolean hasCharacters = false;
         for(int i = 0; i < currentLine.length(); i++) {
            currentCharacter = currentLine.charAt(i);
-           if(currentLine.contains("//")){
-               lineOfText = currentLine;
+           if(currentLine.charAt(i) == '/' && currentLine.charAt(i + 1) == '/'){
+               lineOfText = removeBlankLines(currentLine.substring(0, i));
                break;
            }
         }
+        
         return lineOfText;
-        //return null;
     }
     
+    
+    /**
+     * Removes Java block comments 
+     */
     public String removeBlockComments(String currentLine) {
         
         return null;
+    }
+    
+    /**
+     * Removes all blank lines (with and without whitespace characters), single line comments, and
+     * block comments.
+     */
+    public String preprocessText(String text) {
+        String noBlankLines = removeBlankLines(text);
+        String noBlankLinesOrLineComments = removeLineComments(noBlankLines);
+        return removeBlockComments(noBlankLinesOrLineComments);
     }
 }
