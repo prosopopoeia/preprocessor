@@ -3,25 +3,20 @@ import java.util.Scanner;
 /**
  * Retrieves a file to be processed. Processed means blank lines (both truly blank and
  * lines containing nothing but whitespace or tabs) and comments (block and line) will be removed. 
+ * Only works with ANSI encoded text files
  * 
  * @author Jason Isaacs 
  * @version 1.0
  */
 public class Preprocessor
 {
-    
-    private String file;
     /**
-     * Constructor for objects of class Preprocessor
+     * Takes a filepath and return a string representing the contents of the file found at the filepath
+     * 
+     * @param  filepath path of desired file
+     * @return String of contents of file
      */
-    public Preprocessor(String file) {
-       this.file = file;
-    }
-
-    public Preprocessor() {
-    }
-    
-    public String getFile(String filepath) {
+    private String getFileContents(File filepath) {
         StringBuilder textFromFile = new StringBuilder();
         BufferedReader inputStream = null;
         try {
@@ -29,17 +24,16 @@ public class Preprocessor
             String line;
             while ((line = inputStream.readLine()) != null) {
                    textFromFile.append(line);
+                   textFromFile.append(System.getProperty("line.separator"));
             }
         } 
         catch (IOException e) {
             System.out.println("An error has occurred, the inputStream will be closed, please make sure you have a file to read from: \n" + e);  
-        } 
-        finally {
+        } finally {
             if (inputStream != null) {
                 try {
                      inputStream.close();
-                }
-                catch (IOException e){
+                } catch (IOException e){
                     System.out.println("An error has occurred, the inputStream did not close \n" + e);
                 }
             }
@@ -47,38 +41,58 @@ public class Preprocessor
         return textFromFile.toString();
     }
     
-    public void stripFile(String filepath) {
-        String unprocessedTextFromFile;
-        StringBuilder processedTextFromFile = new StringBuilder();
-        CharacterStripper stripper = new CharacterStripper();
-        
-        unprocessedTextFromFile = getFile(filepath);
-        Scanner scanText = new Scanner(unprocessedTextFromFile);
-        while (scanText.hasNextLine()) {
-            processedTextFromFile.append(scanText.nextLine());
-        }
-        
-    }
-    
-    public void storeFile(String filepath, String fileContents) {
+    /**
+     * Takes a filepath and a string representing the contents of the file
+     * and store them in a file located at filepath
+     * 
+     * @param  filepath path of desired file
+     * @param fileContents string of contents to be stored
+     */
+    private void storeFile(String filepath, String fileContents) {
         BufferedWriter outputStream = null;
         try {
             outputStream = new BufferedWriter(new FileWriter(filepath));
             outputStream.write(fileContents);
-        }
-        catch(IOException e) {
+        } catch(IOException e) {
             System.out.println("An error has occurred, the outputStream will be closed: " + e);
-        }
-        finally {
+        } finally {
             if (outputStream != null) {
                 try {
                     outputStream.close();
-                }
-                catch(IOException e) {
+                } catch(IOException e) {
                     System.out.println("An error has occurred, the outputStream did not close \n" + e);
                 }
             }
         }
     }
     
+    /**
+     * Starts execution of preprocessor.
+     */
+    public static void main(String[] args) {
+        String unProcessedFile, processedFile, outputName;
+        Preprocessor preprocessor = new Preprocessor();
+        CharacterStripper stripper = new CharacterStripper();
+        
+        FilenameFilter testFileFilter = new FilenameFilter() {
+            public boolean accept(File testDir, String name) {
+                String fileName = name;
+                if (!name.contains("out") && name.contains("striptest")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        };
+        
+        File testDirectory = new File("tests");
+        File[] testFiles = testDirectory.listFiles(testFileFilter);
+        
+        for (File testfile : testFiles) {
+            unProcessedFile = preprocessor.getFileContents(testfile);            
+            processedFile = stripper.preprocessText(unProcessedFile);
+            outputName = testfile.getPath();
+            preprocessor.storeFile(outputName.replace(".txt", "-out.txt"), processedFile);
+        }
+    }
 }
