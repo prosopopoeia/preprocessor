@@ -1,13 +1,16 @@
-import java.io.*;
-import java.util.Scanner;
+
 /**
  * Retrieves a file to be processed. Processed means blank lines (both truly blank and
  * lines containing nothing but whitespace or tabs) and comments (block and line) will be removed. 
- * Only works with ANSI encoded text files
+ * Can only guarantee it works correctly with ANSI encoded text files, though it may work with other encodings.
  * 
  * @author Jason Isaacs 
  * @version 1.0
  */
+
+import java.io.*;
+import java.util.Scanner;
+
 public class Preprocessor
 {
     /**

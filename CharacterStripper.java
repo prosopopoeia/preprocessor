@@ -98,7 +98,7 @@ public class CharacterStripper
                     insideOfComment = true;
                     break;
                 } else {
-                    index1 = currentLine.indexOf("*/", index2 + + INCREMENT_PAST_CHARACTERS) + INCREMENT_PAST_CHARACTERS;
+                    index1 = currentLine.indexOf("*/", index2 + INCREMENT_PAST_CHARACTERS) + INCREMENT_PAST_CHARACTERS;
                     i = index1;
                 }
             }
